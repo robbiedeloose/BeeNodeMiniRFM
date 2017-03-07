@@ -59,12 +59,17 @@ int sensorPin = A1;
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #define ONE_WIRE_BUS_1 A0
-//#define ONE_WIRE_BUS_2 A1
-//#define ONE_WIRE_BUS_2
+#define ONE_WIRE_BUS_2 A1
+#define ONE_WIRE_BUS_3 8
+#define ONE_WIRE_BUS_4 9
 OneWire oneWire_1(ONE_WIRE_BUS_1);
-//OneWire oneWire_2(ONE_WIRE_BUS_2);
-DallasTemperature sensors(&oneWire_1);
-//DallasTemperature sensors(&oneWire_2);
+OneWire oneWire_2(ONE_WIRE_BUS_2);
+OneWire oneWire_3(ONE_WIRE_BUS_3);
+OneWire oneWire_4(ONE_WIRE_BUS_4);
+DallasTemperature sensor_1(&oneWire_1);
+DallasTemperature sensor_2(&oneWire_2);
+DallasTemperature sensor_3(&oneWire_3);
+DallasTemperature sensor_4(&oneWire_4);
 
 // need to add DHT22
 #include "DHT.h"
@@ -299,6 +304,12 @@ void setup() {
 
     // Set data rate and transmit power for uplink (note: txpow seems to be ignored by the library)
     LMIC_setDrTxpow(DR_SF7,14);
+    
+    sensor_1.begin();
+    sensor_2.begin();
+    sensor_3.begin();
+    sensor_4.begin();
+
     initHumidity();
     readSensors();
     encodePayload();

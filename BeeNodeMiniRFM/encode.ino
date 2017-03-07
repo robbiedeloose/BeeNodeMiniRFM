@@ -4,7 +4,7 @@ void initHumidity(){
   for (size_t i = 0; i < 3; i++) {
     h = dht.readHumidity();
     t = dht.readTemperature();
-      sensors.requestTemperatures(); // Send the command to get temperatures
+    //  sensors.requestTemperatures(); // Send the command to get temperatures
     delay(2000);
   }
 }
@@ -33,18 +33,21 @@ void readSensors() {
   // call sensors.requestTemperatures() to issue a global temperature
   // request to all devices on the bus
   DEBUG_PRINT("Requesting temperatures...");
-  sensors.requestTemperatures(); // Send the command to get temperatures
+  sensor_1.requestTemperatures(); // Send the command to get temperatures
+  sensor_2.requestTemperatures(); // Send the command to get temperatures
+  sensor_3.requestTemperatures(); // Send the command to get temperatures
+  sensor_4.requestTemperatures(); // Send the command to get temperatures
   DEBUG_PRINTLN("DONE");
 
   // After we got the temperatures, we can print them here.
   // We use the function ByIndex, and as an example get the temperature from the first sensor only.
-  temp1 = sensors.getTempCByIndex(0);
+  temp1 = sensor_1.getTempCByIndex(0);
   if (temp1 == -127) {temp1 = 0;}
-  temp2 = sensors.getTempCByIndex(1);
+  temp2 = sensor_2.getTempCByIndex(0);
   if (temp2 == -127) {temp2 = 0;}
-  temp3 = sensors.getTempCByIndex(2);
+  temp3 = sensor_3.getTempCByIndex(0);
   if (temp3 == -127) {temp3 = 0;}
-  temp4 = sensors.getTempCByIndex(3);
+  temp4 = sensor_4.getTempCByIndex(0);
   if (temp4 == -127) {temp4 = 0;}
 #ifdef DEBUG
   Serial.print("Temperature for the device 1 (index 0) is: ");
