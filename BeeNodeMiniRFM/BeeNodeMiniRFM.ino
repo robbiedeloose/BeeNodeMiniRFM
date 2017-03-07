@@ -58,13 +58,17 @@ int sensorPin = A1;
 // need to add DS18B20
 #include <OneWire.h>
 #include <DallasTemperature.h>
-#define ONE_WIRE_BUS A0
-OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature sensors(&oneWire);
+#define ONE_WIRE_BUS_1 A0
+//#define ONE_WIRE_BUS_2 A1
+//#define ONE_WIRE_BUS_2
+OneWire oneWire_1(ONE_WIRE_BUS_1);
+//OneWire oneWire_2(ONE_WIRE_BUS_2);
+DallasTemperature sensors(&oneWire_1);
+//DallasTemperature sensors(&oneWire_2);
 
 // need to add DHT22
 #include "DHT.h"
-#define DHTPIN 9     // what digital pin we're connected to
+#define DHTPIN 3     // what digital pin we're connected to
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 DHT dht(DHTPIN, DHTTYPE);
 
