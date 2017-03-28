@@ -53,7 +53,7 @@
 #include <SPI.h>
 
 //battery
-int sensorPin = A1;
+int sensorPin = A3;
 
 // need to add DS18B20
 #include <OneWire.h>
@@ -90,15 +90,15 @@ byte alarm = 0;
 // LoRaWAN NwkSKey, network session key
 // This is the default Semtech key, which is used by the early prototype TTN
 // network.
-static const PROGMEM u1_t NWKSKEY[16] = { 0x1C, 0x7D, 0x7D, 0x4A, 0xBC, 0x3A, 0x1C, 0x7C, 0xBD, 0x16, 0xD6, 0xE5, 0xD0, 0x1F, 0x69, 0xB6 };
+static const PROGMEM u1_t NWKSKEY[16] = { 0x8D, 0xDB, 0x9C, 0xBD, 0x82, 0x48, 0x7E, 0xD4, 0x44, 0x42, 0x8D, 0x58, 0x16, 0x16, 0xC2, 0xC7 };
 
 // LoRaWAN AppSKey, application session key
 // This is the default Semtech key, which is used by the early prototype TTN
 // network.
-static const u1_t PROGMEM APPSKEY[16] = { 0x45, 0xB8, 0x62, 0x0D, 0x2D, 0xD6, 0x3D, 0x14, 0x84, 0xF1, 0x1F, 0x1F, 0xB0, 0x9F, 0x23, 0xE0 };
+static const u1_t PROGMEM APPSKEY[16] = { 0xEE, 0xBD, 0xFC, 0x7D, 0xB3, 0x9B, 0x22, 0xE7, 0xEC, 0x0E, 0x9D, 0x60, 0x27, 0x70, 0x79, 0xAD };
 
 // LoRaWAN end-device address (DevAddr)
-static const u4_t DEVADDR = 0x26011CC3 ; // <-- Change this address for every node!
+static const u4_t DEVADDR = 0x26011FE8 ; // <-- Change this address for every node!
 
 // These callbacks are only used in over-the-air activation, so they are
 // left empty here (we cannot leave them out completely unless
@@ -220,6 +220,7 @@ void do_send(osjob_t* j){
 void setup() {
 
     pinMode(sensorPin, INPUT);
+    analogReference(INTERNAL);
 
     Serial.begin(38400);
     Serial.println(F("Starting"));
@@ -304,7 +305,7 @@ void setup() {
 
     // Set data rate and transmit power for uplink (note: txpow seems to be ignored by the library)
     LMIC_setDrTxpow(DR_SF7,14);
-    
+
     sensor_1.begin();
     sensor_2.begin();
     sensor_3.begin();

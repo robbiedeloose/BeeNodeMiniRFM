@@ -12,7 +12,8 @@ void initHumidity(){
 void readSensors() {
 
   //battery
-  battery =  analogRead(sensorPin) * (3.3 / 1023.0);
+  int sensorvalue =  analogRead(sensorPin);
+  battery = sensorvalue * 0.003363075;
 
   #ifdef DEBUG
     Serial.print("Battery: ");
