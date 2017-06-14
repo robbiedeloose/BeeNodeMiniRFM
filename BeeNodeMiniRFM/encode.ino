@@ -11,9 +11,16 @@ void initHumidity(){
 
 void readSensors() {
 
-  //battery
+  // battery
   int sensorvalue =  analogRead(sensorPin);
-  battery = sensorvalue * 0.003363075;
+
+  // step size
+  // original for R1:100 R2: 47 for AA batteries --> 0.003363075
+  // R1:147 R2: 47 --> max voltage is 4,54  --> 0.00443359375
+  // R1:150 R2: 47 --> max voltage is 4,611 --> 0.0045029296875
+  // R1:150 R2: 51 --> max voltage is 4,335 --> 0.0042333984375
+
+  battery = sensorvalue * 0.00443359375;
 
   #ifdef DEBUG
     Serial.print("Battery: ");

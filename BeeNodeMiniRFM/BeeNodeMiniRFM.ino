@@ -129,6 +129,8 @@ const lmic_pinmap lmic_pins = {
     .rxtx = LMIC_UNUSED_PIN,
     .rst = LMIC_UNUSED_PIN,
     .dio = {4, 5, 7},
+    // .dio = {4, 5, 7}, for breadboard
+    // .dio = {7, 5, 4}, for PCB V1
 };
 
 void onEvent (ev_t ev) {
